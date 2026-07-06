@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Anton', system-ui, sans-serif;
+  --font-condensed: 'Barlow Condensed', system-ui, sans-serif;
+  --font-sans: 'Barlow', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-carbon-950: #0c0d10;
+  --color-carbon-900: #12141a;
+  --color-carbon-800: #16181d;
+  --color-carbon-700: #1c1f27;
+  --color-carbon-600: #24272f;
+  --color-carbon-500: #2a2e38;
+  --color-carbon-400: #3a3f4b;
+
+  --color-ink-100: #eaeaea;
+  --color-ink-300: #c3c8d0;
+  --color-ink-400: #9299a4;
+  --color-ink-500: #8a8f9a;
+  --color-ink-600: #6f747f;
+  --color-ink-700: #4a4f59;
+
+  --color-race-red: #e10600;
+  --color-race-red-light: #ff5b52;
+  --color-race-red-lighter: #ff8079;
+  --color-amber: #ffb000;
+  --color-green: #39ff8b;
+  --color-purple: #b46bff;
+  --color-blue: #3671c6;
+  --color-yellow: #f5c518;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--color-carbon-950);
+  color: var(--color-ink-100);
+  font-family: var(--font-sans);
+}
+
+a {
+  color: var(--color-race-red-light);
+}
+a:hover {
+  color: var(--color-race-red-lighter);
+}
+
+::selection {
+  background: var(--color-race-red);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-carbon-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-carbon-500);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-carbon-400);
+}
+
+@keyframes f1-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes f1-scan {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 6px;
+  }
+}
+@keyframes f1-drs {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(57, 255, 139, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 16px 2px rgba(57, 255, 139, 0.55);
+  }
+}
+@keyframes f1-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes f1-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-f1-blink {
+  animation: f1-blink 1s infinite;
+}
+.animate-f1-drs {
+  animation: f1-drs 1.4s infinite;
+}
+.animate-f1-rise {
+  animation: f1-rise 0.35s ease both;
+}
+.animate-f1-spin {
+  animation: f1-spin 0.8s linear infinite;
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.13) 0 1px,
+    transparent 1px 3px
+  );
+  background-size: 100% 6px;
+  mix-blend-mode: overlay;
+  animation: f1-scan 1.4s steps(2) infinite;
+  z-index: 99;
+}
